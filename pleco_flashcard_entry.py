@@ -1,3 +1,4 @@
+import re
 from dragonmapper import transcriptions
 
 class PlecoFlashcardEntry:
@@ -15,8 +16,9 @@ class PlecoFlashcardEntry:
   def parse_line(self,line):
     array = line.split("\t")
     self.traditional, self.simplified = PlecoFlashcardEntry.parse_hanzi(array[0])
-    self.pinyin = PlecoFlashcardEntry.parse_pinyin(array[1], spaced=self.transcriptions_spaced)
-    self.zhuyin = PlecoFlashcardEntry.parse_zhuyin(array[1], spaced=self.transcriptions_spaced)
+    raw_pinyin = re.sub('\W+', '', array[1])
+    self.pinyin = PlecoFlashcardEntry.parse_pinyin(raw_pinyin, spaced=self.transcriptions_spaced)
+    self.zhuyin = PlecoFlashcardEntry.parse_zhuyin(raw_pinyin, spaced=self.transcriptions_spaced)
     self.meaning = array[2].strip()
     return
 
