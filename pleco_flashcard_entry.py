@@ -23,7 +23,7 @@ class PlecoFlashcardEntry:
   # static methods
   @staticmethod
   def parse_hanzi(mixed_hanzi):
-    traditional_hanzi, simplified_hanzi = mixed_hanzi.replace("]", '').split("[")
+    simplified_hanzi, traditional_hanzi = mixed_hanzi.replace("]", '').split("[")
     return [traditional_hanzi, simplified_hanzi]
 
   @staticmethod
