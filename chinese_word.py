@@ -1,3 +1,5 @@
+from constants import Simplifier, Segmenter, Converter
+from constants import TONE_COLORS
 
 class ChineseWord:
   def __init__(self, traditional='', simplified='', pinyin='', zhuyin='', meaning=''):
