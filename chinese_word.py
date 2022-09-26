@@ -30,7 +30,7 @@ class ChineseWord:
     )
 
   @classmethod
-  def dash_equal_characters(reference, comparison)
+  def dash_equal_characters(reference, comparison):
     dash_form = ["" for i in range(len(reference))]
     for i in range(len(reference)):
       if reference[i] == comparison[i]:
