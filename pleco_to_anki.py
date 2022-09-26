@@ -13,19 +13,19 @@ class PlecoToAnki:
     self.output_file.write('tags:' + self.tags + "\n")
     count = 0
     for line in self.input_file:
-      entry = PlecoFlashcardEntry(line)
+      word = PlecoFlashcardEntry(line).chinese_word
       sequence = [
-        entry.traditional,
-        entry.meaning,
-        "『" + entry.dashed_simplified + "』",
-        entry.zhuyin,
-        entry.pinyin,
-        entry.meaning,
+        word.traditional,
+        word.meaning,
+        "『" + word.dashed_simplified + "』",
+        word.zhuyin,
+        word.pinyin,
+        word.meaning,
         '',
         'Pleco Flashcards'
       ]
       self.output_file.write(';'.join(sequence) + "\n")
-      del entry
+      del word
       count += 1
     print("Parsed %s entries successfully!" % (count))
 
