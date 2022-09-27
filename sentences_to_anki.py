@@ -41,10 +41,13 @@ class SentencesToAnki:
 
   def format_word(self, word):
     cn_word = self.translate(word)
-    rubi_text = get_rubi_element(
-        cn_word.traditional,
-        cn_word.zhuyin
-    )
+    deconstructed = cn_word.hanzi_zhuyin_pairs()
+    length = len(cn_word.traditional)
+    rubi_text = ''
+    for i in range(length):
+      hanzi, zhuyin = deconstructed['hanzi'][i], deconstructed['zhuyin'][i]
+      furigana = '' if hanzi == zhuyin else zhuyin
+      rubi_text += get_rubi_element(hanzi, furigana)
     return "<tr><td><ruby>%s</ruby></td><td>%s</td></tr>"%(
       rubi_text,
       cn_word.english.replace("\n", "<br>")
