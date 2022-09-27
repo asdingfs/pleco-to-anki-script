@@ -1,27 +1,95 @@
 ﻿"Ａ：我放<b>春假</b>的時候到<b>泰國</b>去玩了一個星期，你呢？
-Ｂ：我哪裡也沒去，忙著搬家。";;;;;
-"Ａ：我好喜歡，沒想到泰國這麼有<b>特色</b>。";;;;;
-"Ａ：那裡的房子很漂亮，跟法國的比起來，<b>顏色</b>比較多";;;;;
-"Ｂ：聽說泰國的<b>廟</b>很多。";;;;;
-"Ａ：是。泰國到處都是廟，就像法國有很多<b>教堂</b>一樣。";;;;;
+Ｂ：我哪裡也沒去，忙著搬家。";;;;<ruby><rb>春假</rb><rp>(</rp><rt>ㄔㄨㄣ ㄐㄧㄚˋ</rt><rp>)</rp><rb>[1] spring break</rb></ruby><hr><ruby><rb>泰國</rb><rp>(</rp><rt>ㄊㄞˋ ㄍㄨㄛˊ</rt><rp>)</rp><rb>[1] Thailand
+[2] Thai</rb></ruby>;
+"Ａ：我好喜歡，沒想到泰國這麼有<b>特色</b>。";;;;<ruby><rb>特色</rb><rp>(</rp><rt>ㄊㄜˋ ㄙㄜˋ</rt><rp>)</rp><rb>[1] characteristic
+[2] distinguishing feature or quality</rb></ruby>;
+"Ａ：那裡的房子很漂亮，跟法國的比起來，<b>顏色</b>比較多";;;;<ruby><rb>顏色</rb><rp>(</rp><rt>ㄧㄢˊ ㄙㄜˋ</rt><rp>)</rp><rb>[1] color
+[2] countenance
+[3] appearance
+[4] facial expression
+[5] pigment
+[6] dyestuff</rb></ruby>;
+"Ｂ：聽說泰國的<b>廟</b>很多。";;;;<ruby><rb>廟</rb><rp>(</rp><rt>ㄇㄧㄠˋ</rt><rp>)</rp><rb>[1] temple
+[2] ancestral shrine
+[3] CL:座[zuo4]
+[4] temple fair
+[5] great imperial hall
+[6] imperial</rb></ruby>;
+"Ａ：是。泰國到處都是廟，就像法國有很多<b>教堂</b>一樣。";;;;<ruby><rb>教堂</rb><rp>(</rp><rt>ㄐㄧㄠˋ ㄊㄤˊ</rt><rp>)</rp><rb>[1] church
+[2] chapel
+[3] CL:間|间[jian1]</rb></ruby>;
 "Ｂ：泰國的海邊怎麼樣？
-Ａ：美<b>極了</b>。";;;;;
-"Ａ：我到南部的小島去<b>潛水</b>。";;;;;
-"Ａ：藍藍的海水非常<b>幹淨</b>。";;;;;
-"Ａ：看得見<b>各種</b>顏色的魚。";;;;;
-"Ａ：在法國，沒有那麼<b>酸</b><b>酸</b><b>辣</b><b>辣</b>的菜。";;;;;
-"Ａ：但是在泰國，很多菜都放了<b>檸檬</b>，味道比較酸。";;;;;
-"Ａ：對啊。這些是<b>忘不了</b>的經驗。如果不必上課，我一定要多住一個月。";;;;;
-"高美玲<b>利用</b>放假的時候到處去旅行。";;;;;
-"他喜歡台北這個<b>大城市</b>，也喜歡中南部<b>鄉下</b>。";;;;;
-"因為他家在<b>巴黎</b>，已經習慣大城市熱鬧的<b>氣氛</b>。";;;;;
-"但是她覺得台灣鄉下小<b>鎮</b>也很有意思。";;;;;
-"台北市區<b>現代</b>的<b>公寓</b>、大樓比較多。";;;;;
-"台北的馬路<b>寬</b>、車比較多。";;;;;
-"中南部除了新<b>建築</b>，有看得見<b>傳統</b>的老房子。";;;;;
-"他在<b>高雄</b>看見很多三<b>層</b>樓的房子。";;;;;
-"<b>買得起</b>房子的南部人，比較喜歡這種房子";;;;;
-"美玲覺得可能天氣好，所以南部人很<b>熱情</b>。";;;;;
-"台北跟中南部比起來，雖然生活費高，環境比較<b>擠</b>。";;;;;
-"美玲覺得台北到處都有餐廳、便利商店，<b>百貨公司</b>也很多。";;;;;
-"美玲覺得台北什麼時候都吃得到飯，也買得到飲料，所以他<b>越來越</b>喜歡生活方便的台北了。";;;;;
+Ａ：美<b>極了</b>。";;;;<ruby><rb>極了</rb><rp>(</rp><rt>ㄐㄧˊ ㄌㄜ˙</rt><rp>)</rp><rb>[1] extremely
+[2] exceedingly</rb></ruby>;
+"Ａ：我到南部的小島去<b>潛水</b>。";;;;<ruby><rb>潛水</rb><rp>(</rp><rt>ㄑㄧㄢˊ ㄕㄨㄟˇ</rt><rp>)</rp><rb>[1] to dive
+[2] to go under water
+[3] (in an online forum) to lurk</rb></ruby>;
+"Ａ：藍藍的海水非常<b>幹淨</b>。";;;;<ruby><rb>乾淨</rb><rp>(</rp><rt>ㄍㄢ ㄐㄧㄥˋ</rt><rp>)</rp><rb>[1] clean
+[2] neat</rb></ruby>;
+"Ａ：看得見<b>各種</b>顏色的魚。";;;;<ruby><rb>各種</rb><rp>(</rp><rt>ㄍㄜˋ ㄓㄨㄥˇ</rt><rp>)</rp><rb>[1] every kind of
+[2] all kinds of
+[3] various kinds</rb></ruby>;
+"Ａ：在法國，沒有那麼<b>酸</b><b>酸</b><b>辣</b><b>辣</b>的菜。";;;;<ruby><rb>酸</rb><rp>(</rp><rt>ㄙㄨㄢ</rt><rp>)</rp><rb>[1] sour
+[2] tart
+[3] sick at heart
+[4] grieved
+[5] sore
+[6] aching
+[7] pedantic
+[8] impractical
+[9] to make sarcastic remarks about sb
+[10] an acid</rb></ruby><hr><ruby><rb>辢</rb><rp>(</rp><rt>ㄌㄚˋ</rt><rp>)</rp><rb>[1] old variant of 辣[la4]</rb></ruby>;
+"Ａ：但是在泰國，很多菜都放了<b>檸檬</b>，味道比較酸。";;;;<ruby><rb>檸檬</rb><rp>(</rp><rt>ㄋㄧㄥˊ ㄇㄥˊ</rt><rp>)</rp><rb>[1] lemon</rb></ruby>;
+"Ａ：對啊。這些是<b>忘不了</b>的經驗。如果不必上課，我一定要多住一個月。";;;;<ruby><rb>忘不了</rb><rp>(</rp><rt>ㄨㄤˋ ㄅㄨˋ ㄌㄧㄠˇ</rt><rp>)</rp><rb>[1] cannot forget</rb></ruby>;
+"高美玲<b>利用</b>放假的時候到處去旅行。";;;;<ruby><rb>利用</rb><rp>(</rp><rt>ㄌㄧˋ ㄩㄥˋ</rt><rp>)</rp><rb>[1] to exploit
+[2] to make use of
+[3] to use
+[4] to take advantage of
+[5] to utilize</rb></ruby>;
+"他喜歡台北這個<b>大城市</b>，也喜歡中南部<b>鄉下</b>。";;;;<ruby><rb>大城市</rb><rp>(</rp><rt>ㄉㄚˋ ㄔㄥˊ ㄕˋ</rt><rp>)</rp><rb>[1] major city
+[2] metropolis</rb></ruby><hr><ruby><rb>鄉下</rb><rp>(</rp><rt>ㄒㄧㄤ ㄒㄧㄚ˙</rt><rp>)</rp><rb>[1] countryside
+[2] rural area
+[3] CL:個|个[ge4]</rb></ruby>;
+"因為他家在<b>巴黎</b>，已經習慣大城市熱鬧的<b>氣氛</b>。";;;;<ruby><rb>巴黎</rb><rp>(</rp><rt>ㄅㄚ ㄌㄧˊ</rt><rp>)</rp><rb>[1] Paris, capital of France</rb></ruby><hr><ruby><rb>氣氛</rb><rp>(</rp><rt>ㄑㄧˋ ㄈㄣ</rt><rp>)</rp><rb>[1] atmosphere
+[2] mood</rb></ruby>;
+"但是她覺得台灣鄉下小<b>鎮</b>也很有意思。";;;;<ruby><rb>鎮</rb><rp>(</rp><rt>ㄓㄣˋ</rt><rp>)</rp><rb>[1] to press down
+[2] to calm
+[3] to subdue
+[4] to suppress
+[5] to guard
+[6] garrison
+[7] small town
+[8] to cool or chill (food or drinks)</rb></ruby>;
+"台北市區<b>現代</b>的<b>公寓</b>、大樓比較多。";;;;<ruby><rb>現代</rb><rp>(</rp><rt>ㄒㄧㄢˋ ㄉㄞˋ</rt><rp>)</rp><rb>[1] Hyundai, South Korean company</rb></ruby><hr><ruby><rb>公寓</rb><rp>(</rp><rt>ㄍㄨㄥ ㄩˋ</rt><rp>)</rp><rb>[1] apartment building
+[2] block of flats
+[3] CL:套[tao4]</rb></ruby>;
+"台北的馬路<b>寬</b>、車比較多。";;;;<ruby><rb>寬</rb><rp>(</rp><rt>ㄎㄨㄢ</rt><rp>)</rp><rb>[1] surname Kuan</rb></ruby>;
+"中南部除了新<b>建築</b>，有看得見<b>傳統</b>的老房子。";;;;<ruby><rb>建築</rb><rp>(</rp><rt>ㄐㄧㄢˋ ㄓㄨˋ</rt><rp>)</rp><rb>[1] to construct
+[2] building
+[3] CL:個|个[ge4]</rb></ruby><hr><ruby><rb>傳統</rb><rp>(</rp><rt>ㄔㄨㄢˊ ㄊㄨㄥˇ</rt><rp>)</rp><rb>[1] tradition
+[2] traditional
+[3] convention
+[4] conventional
+[5] CL:個|个[ge4]</rb></ruby>;
+"他在<b>高雄</b>看見很多三<b>層</b>樓的房子。";;;;<ruby><rb>高雄</rb><rp>(</rp><rt>ㄍㄠ ㄒㄩㄥˊ</rt><rp>)</rp><rb>[1] Kaohsiung, a special municipality in south Taiwan</rb></ruby><hr><ruby><rb>層</rb><rp>(</rp><rt>ㄘㄥˊ</rt><rp>)</rp><rb>[1] layer
+[2] stratum
+[3] laminated
+[4] floor (of a building)
+[5] storey
+[6] classifier for layers
+[7] repeated
+[8] sheaf (math.)</rb></ruby>;
+"<b>買得起</b>房子的南部人，比較喜歡這種房子";;;;<ruby><rb>買得起</rb><rp>(</rp><rt>ㄇㄞˇ ㄉㄜ˙ ㄑㄧˇ</rt><rp>)</rp><rb>N/A</rb></ruby>;
+"美玲覺得可能天氣好，所以南部人很<b>熱情</b>。";;;;<ruby><rb>熱情</rb><rp>(</rp><rt>ㄖㄜˋ ㄑㄧㄥˊ</rt><rp>)</rp><rb>[1] cordial
+[2] enthusiastic
+[3] passion
+[4] passionate
+[5] passionately</rb></ruby>;
+"台北跟中南部比起來，雖然生活費高，環境比較<b>擠</b>。";;;;<ruby><rb>擠</rb><rp>(</rp><rt>ㄐㄧˇ</rt><rp>)</rp><rb>[1] to crowd in
+[2] to cram in
+[3] to force others aside
+[4] to press
+[5] to squeeze
+[6] to find (time in one's busy schedule)</rb></ruby>;
+"美玲覺得台北到處都有餐廳、便利商店，<b>百貨公司</b>也很多。";;;;<ruby><rb>百貨公司</rb><rp>(</rp><rt>ㄅㄞˇ ㄏㄨㄛˋ ㄍㄨㄥ ㄙ</rt><rp>)</rp><rb>[1] department store</rb></ruby>;
+"美玲覺得台北什麼時候都吃得到飯，也買得到飲料，所以他<b>越來越</b>喜歡生活方便的台北了。";;;;<ruby><rb>越來越</rb><rp>(</rp><rt>ㄩㄝˋ ㄌㄞˊ ㄩㄝˋ</rt><rp>)</rp><rb>[1] more and more</rb></ruby>;
