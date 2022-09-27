@@ -2,12 +2,12 @@
 def escape(text):
   return "\"%s\""%(text)
 
-def bold(text):
-  return "<b>%s</b>"%(text)
+def emphasize(text):
+  return "<b><u>%s</u></b>"%(text)
 
-def bold_word_in_sentence(sentence, word):
+def emphasize_word_in_sentence(sentence, word):
   arr = sentence.split(word)
-  return bold(word).join(arr)
+  return emphasize(word).join(arr)
 
 # return HTML text containing interleaved phonetics called ruby-style texts
 def get_rubi_element(word, furigana = ''):

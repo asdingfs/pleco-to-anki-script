@@ -32,7 +32,7 @@ class SentencesToAnki:
   def format_sentences(self, sentences, words):
     bolded_sentences = sentences.replace("&", "\n")
     for word in words.split('&'):
-      bolded_sentences = bold_word_in_sentence(bolded_sentences, word)
+      bolded_sentences = emphasize_word_in_sentence(bolded_sentences, word)
     return escape(bolded_sentences)
 
   def format_pinyin(self, sentences):
