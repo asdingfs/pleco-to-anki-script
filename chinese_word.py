@@ -1,5 +1,6 @@
 from constants import TONE_COLORS
 from constants import to_simplified, to_pinyin, to_segments
+from dictionary import Dictionary
 from dragonmapper import transcriptions
 
 class ChineseWord:
@@ -28,6 +29,32 @@ class ChineseWord:
 
   def set_pinyin_from_zhuyin(self):
     self.pinyin = transcriptions.zhuyin_to_pinyin(self.zhuyin)
+
+  def set_simplified_from_traditional(self):
+    self.simplified = to_simplified(self.traditional)
+
+  def set_pinyin_from_simplified(self):
+    arr = [item for sublist in to_pinyin(self.simplified) for item in sublist]
+    self.pinyin = ''.join(arr)
+
+  def set_english_from_simplified(self):
+    entry = Dictionary.get_or_none(Dictionary.simplified==self.simplified)
+    if entry is None:
+      self.english = 'N/A'
+    else:
+      self.english = entry.english
+
+  def fill_fields_from_traditional(self, overwrite=False):
+    if overwrite:
+      self.set_simplified_from_traditional()
+      self.set_pinyin_from_simplified()
+      self.set_zhuyin_from_pinyin()
+      self.set_english_from_simplified()
+    else:
+      self.set_simplified_from_traditional() if bool(self.simplified) is False else None
+      self.set_pinyin_from_simplified() if bool(self.pinyin) is False else None
+      self.set_zhuyin_from_pinyin() if bool(self.zhuyin) is False else None
+      self.set_english_from_simplified() if bool(self.english) is False else None
 
   @classmethod
   def dash_equal_characters(reference, comparison):
