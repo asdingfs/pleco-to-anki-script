@@ -11,9 +11,12 @@ class SentencesToAnki:
   def parse(self):
     count = 0
     for line in self.input_file:
-      sentences, words = line.split(';')
+      sentences, words = line.strip().split(';')
+      bolded_sentences = sentences.replace("&", "\n")
+      for word in words.split('&'):
+        bolded_sentences = self.bold_word_in_sentence(bolded_sentences, word)
       field_sequence = [
-        self.escape(sentences.replace("&", "\n")),
+        self.escape(bolded_sentences),
         '', # audio (using other plugin to generate)
         '', # TODO: pinyin,
         '', # TODO: meaning,
@@ -26,3 +29,11 @@ class SentencesToAnki:
 
   def escape(self, text):
     return "\"%s\""%(text)
+
+  def bold(self, text):
+    return "<b>%s</b>"%(text)
+
+  def bold_word_in_sentence(self, sentence, word):
+    arr = sentence.split(word)
+    return self.bold(word).join(arr)
+
