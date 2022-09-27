@@ -1,5 +1,6 @@
 from constants import TONE_COLORS
 from constants import to_simplified, to_pinyin, to_segments
+from dragonmapper import transcriptions
 
 class ChineseWord:
   def __init__(self, traditional='', simplified='', pinyin='', zhuyin='', english=''):
@@ -21,6 +22,12 @@ class ChineseWord:
 
   def dashed_traditional(self):
     return ChineseWord.dash_equal_characters(self.simplified, self.traditional)
+
+  def set_zhuyin_from_pinyin(self):
+    self.zhuyin = transcriptions.pinyin_to_zhuyin(self.pinyin)
+
+  def set_pinyin_from_zhuyin(self):
+    self.pinyin = transcriptions.zhuyin_to_pinyin(self.zhuyin)
 
   @classmethod
   def dash_equal_characters(reference, comparison):
