@@ -1,6 +1,7 @@
 pip3 install these things:
 
 dragonmapper, for pinyin <-> zhuyin
+zhon, for common chinese constants
 opencc, for most accurate traditional <-> simplified conversion
 jieba, for most accurate segmentation of chinese characters
 pypinyin, to convert sentences to pinyin (simplified character inputs produces better results)

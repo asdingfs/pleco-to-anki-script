@@ -1,7 +1,12 @@
+import re
+
 from constants import TONE_COLORS
 from constants import to_simplified, to_pinyin, to_segments
 from dictionary import Dictionary
 from dragonmapper import transcriptions
+from zhon import zhuyin, hanzi
+
+import pdb
 
 class ChineseWord:
   def __init__(self, traditional='', simplified='', pinyin='', zhuyin='', english=''):
@@ -55,6 +60,23 @@ class ChineseWord:
       self.set_pinyin_from_simplified() if bool(self.pinyin) is False else None
       self.set_zhuyin_from_pinyin() if bool(self.zhuyin) is False else None
       self.set_english_from_simplified() if bool(self.english) is False else None
+
+  def deconstructed_zhuyin(self):
+    return re.findall(zhuyin.syllable, self.zhuyin)
+
+  def hanzi_zhuyin_pairs(self):
+    pairs = { 'hanzi': [], 'zhuyin': [] }
+    deconstructed_zhuyin = self.deconstructed_zhuyin()
+    if bool(deconstructed_zhuyin):
+      offset = 0
+      for idx, char in enumerate(self.traditional):
+        pairs['hanzi'].append(char)
+        if bool(re.findall('[{}]'.format(hanzi.stops + hanzi.non_stops), char)): # if a punctuation
+          pairs['zhuyin'].append(char)
+          offset += 1
+        else:
+          pairs['zhuyin'].append(deconstructed_zhuyin[idx-offset])
+    return pairs
 
   @classmethod
   def dash_equal_characters(reference, comparison):

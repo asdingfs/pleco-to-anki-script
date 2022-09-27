@@ -10,3 +10,10 @@ word = '㧯'
 a = Dictionary.get(Dictionary.traditional==word)
 cn = a.to_cn_word()
 vars(cn)
+
+
+# test hanzi_zhuyin_pairs
+from chinese_word import ChineseWord
+a = ChineseWord('是。泰國到處都是廟，就像法國有很多教堂一樣。')
+a.fill_fields_from_traditional()
+a.hanzi_zhuyin_pairs()
