@@ -35,4 +35,4 @@ class PlecoFlashcardEntry:
 
   def parse_meaning(self, raw_meaning):
     parsed_meaning = raw_meaning.strip().replace(';', ',')
-    self.chinese_word.meaning = parsed_meaning
+    self.chinese_word.english = parsed_meaning
