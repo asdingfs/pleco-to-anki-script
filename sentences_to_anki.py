@@ -37,19 +37,17 @@ class SentencesToAnki:
 
   def format_words(self, words):
     arr = list(map(self.format_word, words.split('&')))
-    return '<hr>'.join(arr)
+    return "<table>%s</table>"%(''.join(arr))
 
   def format_word(self, word):
     cn_word = self.translate(word)
-    return "<ruby>%s%s</ruby>"%(
-      get_rubi_element(
+    rubi_text = get_rubi_element(
         cn_word.traditional,
         cn_word.zhuyin
-      ),
-      get_rubi_element(
-        cn_word.english,
-        ''
-      )
+    )
+    return "<tr><td><ruby>%s</ruby></td><td>%s</td></tr>"%(
+      rubi_text,
+      cn_word.english.replace("\n", "<br>")
     )
 
   def translate(self, tw_word):
