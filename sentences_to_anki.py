@@ -1,7 +1,7 @@
 # see input test_sentences for sample format
 from dictionary import Dictionary
 from chinese_word import ChineseWord
-from constants import to_simplified
+from constants import to_simplified, to_pinyin, to_segments
 from anki_formatting import *
 
 class SentencesToAnki:
@@ -20,7 +20,7 @@ class SentencesToAnki:
       field_sequence = [
         self.format_sentences(sentences, words),
         '', # audio (using other plugin to generate)
-        '', # TODO: pinyin,
+        self.format_pinyin(sentences), # format pinyin by using jieba segmentation
         '', # TODO: meaning,
         self.format_words(words), # formatted words
         '' # TODO: context
@@ -34,6 +34,15 @@ class SentencesToAnki:
     for word in words.split('&'):
       bolded_sentences = bold_word_in_sentence(bolded_sentences, word)
     return escape(bolded_sentences)
+
+  def format_pinyin(self, sentences):
+    pinyin_sentences = sentences.replace("&", "\n")
+    arr = []
+    for segment in to_segments(to_simplified(pinyin_sentences)):
+      word = ChineseWord(simplified = segment)
+      word.set_pinyin_from_simplified()
+      arr.append(word.pinyin)
+    return escape(' '.join(arr))
 
   def format_words(self, words):
     arr = list(map(self.format_word, words.split('&')))
