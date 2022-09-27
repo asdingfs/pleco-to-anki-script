@@ -64,5 +64,17 @@ class ChineseWord:
         dash_form[i] = '—'
       else:
         dash_form[i] = comparison[i]
-
     return ' '.join(dash_form).strip()
+
+  @classmethod
+  def from_dictionary(self, dictionary):
+    cn_word = ChineseWord(
+      traditional=dictionary.traditional,
+      simplified=dictionary.simplified,
+      pinyin=dictionary.pinyin,
+      english=dictionary.english
+    )
+    # transliterate and standardise zhuyin and pinyin format according to the one defined in-class
+    cn_word.set_zhuyin_from_pinyin()
+    cn_word.set_pinyin_from_zhuyin()
+    return cn_word

@@ -2,7 +2,6 @@ from peewee import *
 from constants import dict_db
 from playhouse.sqlite_ext import SqliteExtDatabase
 from cedict_utils.cedict import CedictParser
-from chinese_word import ChineseWord
 
 sqlite_db = SqliteExtDatabase('data/cedict.db')
 
@@ -12,18 +11,6 @@ class Dictionary(Model):
   pinyin = CharField()
   english = TextField()
   raw_line = TextField()
-
-  def to_cn_word(self):
-    cn_word = ChineseWord(
-      traditional=self.traditional,
-      simplified=self.simplified,
-      pinyin=self.pinyin,
-      english=self.english
-    )
-    # transliterate and standardise zhuyin and pinyin format according to the one defined in-class
-    cn_word.set_zhuyin_from_pinyin()
-    cn_word.set_pinyin_from_zhuyin()
-    return cn_word
 
   class Meta:
     database = dict_db
