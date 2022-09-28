@@ -43,12 +43,27 @@ class SentencesToAnki:
       word.set_pinyin_from_simplified()
       if word.simplified == '&':
         word = "<br>"
-      elif word.simplified in emphasized_words:
-        word = emphasize(word.pinyin)
+      elif self.does_word_contain_emphasized_words(word.simplified, emphasized_words):
+        word = self.emphasis_part_of_word_containing_emphasized_words(word.simplified, emphasized_words)
       else:
         word = word.pinyin
       arr.append(word)
     return escape(' '.join(arr))
+
+  # TODO: refactor for optimisation later
+  def does_word_contain_emphasized_words(self, word, emphasized_words):
+    for emphasis in emphasized_words:
+      if emphasis in word:
+        return True
+    return False
+
+  # TODO: refactor for optimisation later
+  def emphasis_part_of_word_containing_emphasized_words(self, word, emphasized_words):
+    for emphasis in emphasized_words:
+      if emphasis in word:
+        arr = word.split(emphasis)
+        return emphasize(emphasis).join(arr)
+    return ''
 
   def format_words(self, words):
     arr = list(map(self.format_word, words.split('&')))
