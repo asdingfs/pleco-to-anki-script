@@ -20,7 +20,7 @@ class SentencesToAnki:
       field_sequence = [
         self.format_sentences(sentences, words),
         '', # audio (using other plugin to generate)
-        self.format_pinyin(sentences), # format pinyin by using jieba segmentation
+        self.format_pinyin(sentences, words), # format pinyin by using jieba segmentation
         '', # TODO: meaning,
         self.format_words(words), # formatted words
         '' # TODO: context
@@ -30,18 +30,24 @@ class SentencesToAnki:
     print("Parsed %s entries successfully!" % (count))
 
   def format_sentences(self, sentences, words):
-    bolded_sentences = sentences.replace("&", "\n")
+    bolded_sentences = sentences.replace("&", "<br>")
     for word in words.split('&'):
       bolded_sentences = emphasize_word_in_sentence(bolded_sentences, word)
     return escape(bolded_sentences)
 
-  def format_pinyin(self, sentences):
-    pinyin_sentences = sentences.replace("&", "\n")
+  def format_pinyin(self, sentences, words):
+    emphasized_words = list(map(to_simplified, words.split('&')))
     arr = []
-    for segment in to_segments(to_simplified(pinyin_sentences)):
+    for segment in to_segments(to_simplified(sentences)):
       word = ChineseWord(simplified = segment)
       word.set_pinyin_from_simplified()
-      arr.append(word.pinyin)
+      if word.simplified == '&':
+        word = "<br>"
+      elif word.simplified in emphasized_words:
+        word = emphasize(word.pinyin)
+      else:
+        word = word.pinyin
+      arr.append(word)
     return escape(' '.join(arr))
 
   def format_words(self, words):
