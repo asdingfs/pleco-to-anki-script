@@ -1,7 +1,10 @@
+import re
+
 # see input test_sentences for sample format
 from dictionary import Dictionary
 from chinese_word import ChineseWord
 from constants import to_simplified, to_pinyin, to_segments
+from zhon import pinyin
 from anki_formatting import *
 
 class SentencesToAnki:
@@ -14,6 +17,7 @@ class SentencesToAnki:
     self.output_file.close()
 
   def parse(self):
+    self.output_file.write('tags:' + self.tags + "\n")
     count = 0
     for line in self.input_file:
       sentences, words = line.strip().split(';')
@@ -41,28 +45,26 @@ class SentencesToAnki:
     for segment in to_segments(to_simplified(sentences)):
       word = ChineseWord(simplified = segment)
       word.set_pinyin_from_simplified()
+      emphasis = self.find_emphasis(word.simplified, emphasized_words)
       if word.simplified == '&':
         word = "<br>"
-      elif self.does_word_contain_emphasized_words(word.simplified, emphasized_words):
-        word = self.emphasis_part_of_word_containing_emphasized_words(word.simplified, emphasized_words)
+      elif bool(emphasis):
+        idx = word.simplified.find(emphasis)
+        length = len(emphasis)
+        pinyin_arr = re.findall(pinyin.syllable, word.pinyin, re.I)
+        word = ''.join(pinyin_arr[:idx]) +\
+          emphasize(''.join(pinyin_arr[idx:idx+length])) +\
+          ''.join(pinyin_arr[idx+length:])
       else:
         word = word.pinyin
       arr.append(word)
     return escape(' '.join(arr))
 
   # TODO: refactor for optimisation later
-  def does_word_contain_emphasized_words(self, word, emphasized_words):
+  def find_emphasis(self, word, emphasized_words):
     for emphasis in emphasized_words:
       if emphasis in word:
-        return True
-    return False
-
-  # TODO: refactor for optimisation later
-  def emphasis_part_of_word_containing_emphasized_words(self, word, emphasized_words):
-    for emphasis in emphasized_words:
-      if emphasis in word:
-        arr = word.split(emphasis)
-        return emphasize(emphasis).join(arr)
+        return emphasis
     return ''
 
   def format_words(self, words):
