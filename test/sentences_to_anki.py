@@ -8,6 +8,13 @@ SentencesToAnki(
   tags='CCC_B2L9 Sentences Incomplete_Audio Incomplete_Meaning Incomplete_Source'
 )
 
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/test_sentences_short.txt',
+  output='output/test_sentences_short.txt',
+  tags='Immersion Sentences Incomplete'
+)
+
 # test conversions of Dictionary class to ChineseWord
 from dictionary import Dictionary
 word = '㧯'
