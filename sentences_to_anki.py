@@ -24,10 +24,12 @@ class SentencesToAnki:
       field_sequence = [
         self.format_sentences(sentences, words),
         '', # audio (using other plugin to generate)
+        '', # picture comprehension test field (manually uploaded later)
+        '', # supporting picture for reading/listening context (manually uploaded later)
         self.format_pinyin(sentences, words), # format pinyin by using jieba segmentation
-        '', # TODO: meaning,
+        '', # meaning, self-populated in anki
         self.format_words(words), # formatted words
-        '' # TODO: context
+        '' # context, self-populated in anki
       ]
       self.output_file.write(';'.join(field_sequence) + "\n")
       count += 1
