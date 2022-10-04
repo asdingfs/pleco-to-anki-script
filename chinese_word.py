@@ -6,8 +6,6 @@ from dictionary import Dictionary
 from dragonmapper import transcriptions
 from zhon import zhuyin, hanzi
 
-import pdb
-
 class ChineseWord:
   def __init__(self, traditional='', simplified='', pinyin='', zhuyin='', english=''):
     self.traditional = traditional
@@ -79,7 +77,7 @@ class ChineseWord:
     return pairs
 
   @classmethod
-  def dash_equal_characters(reference, comparison):
+  def dash_equal_characters(klass, reference, comparison):
     dash_form = ["" for i in range(len(reference))]
     for i in range(len(reference)):
       if reference[i] == comparison[i]:

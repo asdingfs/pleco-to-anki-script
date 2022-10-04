@@ -17,7 +17,7 @@ class PlecoToAnki:
       sequence = [
         word.traditional,
         word.english,
-        "『" + word.dashed_simplified + "』",
+        "『" + word.dashed_simplified() + "』",
         word.zhuyin,
         word.pinyin,
         word.english,
