@@ -20,16 +20,16 @@ class SentencesToAnki:
     self.output_file.write('tags:' + self.tags + "\n")
     count = 0
     for line in self.input_file:
-      sentences, words = line.strip().split(';')
+      sentences, words, meaning, context = line.strip().split(';')
       field_sequence = [
         self.format_sentences(sentences, words),
         '', # audio (using other plugin to generate)
         '', # picture comprehension test field (manually uploaded later)
         '', # supporting picture for reading/listening context (manually uploaded later)
         self.format_pinyin(sentences, words), # format pinyin by using jieba segmentation
-        '', # meaning, self-populated in anki
+        escape(meaning.strip()), # meaning
         self.format_words(words), # formatted words
-        '' # context, self-populated in anki
+        escape(context.strip()) # context
       ]
       self.output_file.write(';'.join(field_sequence) + "\n")
       count += 1
@@ -71,7 +71,7 @@ class SentencesToAnki:
 
   def format_words(self, words):
     arr = list(map(self.format_word, words.split('&')))
-    return "<table>%s</table>"%(''.join(arr))
+    return escape("<table>%s</table>"%(''.join(arr)))
 
   def format_word(self, word):
     cn_word = self.translate(word)

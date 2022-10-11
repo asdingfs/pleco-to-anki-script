@@ -5,13 +5,37 @@ from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
   input='input/test_sentences.txt',
   output='output/test_sentences.txt',
-  tags='CCC_B2L9 Sentences Incomplete_Audio Incomplete_Meaning Incomplete_Source'
+  tags='Test Tags Test_Tags'
+)
+
+# test output of SentencesToAnki
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/sentences_female.txt',
+  output='output/sentences_female.txt',
+  tags='CCC_B2L11 Sentences Incomplete Female_Audio Dialogue'
+)
+
+# test output of SentencesToAnki
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/sentences_male.txt',
+  output='output/sentences_male.txt',
+  tags='CCC_B2L11 Sentences Incomplete Male_Audio Dialogue'
+)
+
+# test output of SentencesToAnki
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/sentences_readings.txt',
+  output='output/sentences_readings.txt',
+  tags='CCC_B2L10 Sentences Incomplete Male_Audio Readings'
 )
 
 from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
-  input='input/test_sentences_short.txt',
-  output='output/test_sentences_short.txt',
+  input='input/sentences_short.txt',
+  output='output/sentences_short.txt',
   tags='Immersion Sentences Incomplete'
 )
 
