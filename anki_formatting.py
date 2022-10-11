@@ -1,6 +1,6 @@
 # collection of pure functions
 def escape(text):
-  return "\"%s\""%(text)
+  return "\"%s\""%(text.replace("\"", "\"\""))
 
 def emphasize(text):
   return "<b><u>%s</u></b>"%(text)
