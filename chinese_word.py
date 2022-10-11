@@ -28,7 +28,9 @@ class ChineseWord:
     return ChineseWord.dash_equal_characters(self.simplified, self.traditional)
 
   def set_zhuyin_from_pinyin(self):
-    self.zhuyin = transcriptions.pinyin_to_zhuyin(self.pinyin)
+    # attempt to convert non-standard notation of u: to ü
+    escaped_pinyin = self.pinyin.replace("u:", "ü")
+    self.zhuyin = transcriptions.pinyin_to_zhuyin(escaped_pinyin)
 
   def set_pinyin_from_zhuyin(self):
     self.pinyin = transcriptions.zhuyin_to_pinyin(self.zhuyin)

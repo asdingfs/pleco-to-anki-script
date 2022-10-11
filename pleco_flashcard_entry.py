@@ -15,6 +15,7 @@ class PlecoFlashcardEntry:
       array += ['' for i in range(max(0, 3 - len(array)))]
     self.parse_hanzi(array[0])
     raw_pinyin = re.sub('\W+', '', array[1])
+    raw_pinyin = raw_pinyin.replace("u:", "ü")
     self.parse_pinyin(raw_pinyin)
     self.parse_zhuyin(raw_pinyin)
     self.parse_meaning(array[2])
