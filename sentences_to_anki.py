@@ -8,10 +8,11 @@ from zhon import pinyin
 from anki_formatting import *
 
 class SentencesToAnki:
-  def __init__(self, input, output, tags=''):
+  def __init__(self, input, output, tags='', context=''):
     self.input_file = open(input, 'rt', encoding='utf-8-sig')
     self.output_file = open(output, 'wt', encoding='utf-8-sig')
     self.tags = tags
+    self.context = context
     self.parse()
     self.input_file.close()
     self.output_file.close()
@@ -20,7 +21,7 @@ class SentencesToAnki:
     self.output_file.write('tags:' + self.tags + "\n")
     count = 0
     for line in self.input_file:
-      sentences, words, meaning, context = line.strip().split(';')
+      sentences, words, meaning = line.strip().split(';')
       field_sequence = [
         self.format_sentences(sentences, words),
         '', # audio (using other plugin to generate)
@@ -29,7 +30,7 @@ class SentencesToAnki:
         self.format_pinyin(sentences, words), # format pinyin by using jieba segmentation
         escape(meaning.strip()), # meaning
         self.format_words(words), # formatted words
-        escape(context.strip()) # context
+        escape(self.context.strip()) # context
       ]
       self.output_file.write(';'.join(field_sequence) + "\n")
       count += 1
