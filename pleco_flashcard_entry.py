@@ -7,14 +7,15 @@ class PlecoFlashcardEntry:
     self.chinese_word = ChineseWord()
     self.separator = separator
     self.parse_line(entry)
-    self.dashed_traditional = PlecoFlashcardEntry.dash_equal_characters(self.simplified, self.traditional)
-    self.dashed_simplified = PlecoFlashcardEntry.dash_equal_characters(self.traditional, self.simplified)
     return
 
   def parse_line(self,line):
     array = line.split(self.separator)
+    if len(array) < 3:
+      array += ['' for i in range(max(0, 3 - len(array)))]
     self.parse_hanzi(array[0])
     raw_pinyin = re.sub('\W+', '', array[1])
+    raw_pinyin = raw_pinyin.replace("u:", "ü")
     self.parse_pinyin(raw_pinyin)
     self.parse_zhuyin(raw_pinyin)
     self.parse_meaning(array[2])
@@ -35,4 +36,4 @@ class PlecoFlashcardEntry:
 
   def parse_meaning(self, raw_meaning):
     parsed_meaning = raw_meaning.strip().replace(';', ',')
-    self.chinese_word.meaning = parsed_meaning
+    self.chinese_word.english = parsed_meaning

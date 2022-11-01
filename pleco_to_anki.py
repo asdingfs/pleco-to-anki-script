@@ -16,11 +16,11 @@ class PlecoToAnki:
       word = PlecoFlashcardEntry(line).chinese_word
       sequence = [
         word.traditional,
-        word.meaning,
-        "『" + word.dashed_simplified + "』",
+        word.english,
+        "『" + word.dashed_simplified() + "』",
         word.zhuyin,
         word.pinyin,
-        word.meaning,
+        word.english,
         '',
         'Pleco Flashcards'
       ]
