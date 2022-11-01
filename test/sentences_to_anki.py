@@ -13,8 +13,8 @@ from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
   input='input/sentences_female.txt',
   output='output/sentences_female.txt',
-  tags='CCC_B2L13 Sentences Incomplete Female_Audio Dialogue',
-  context='CCC, Textbook 2, Lesson 13, Dialogue on Page 322 (348)'
+  tags='CCC_B2L14 Sentences Incomplete Female_Audio Dialogue',
+  context='CCC, Textbook 2, Lesson 14, Dialogue on Page 358 (384)'
 )
 
 # test output of SentencesToAnki
@@ -22,8 +22,8 @@ from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
   input='input/sentences_male.txt',
   output='output/sentences_male.txt',
-  tags='CCC_B2L13 Sentences Incomplete Male_Audio Dialogue',
-  context='CCC, Textbook 2, Lesson 13, Dialogue on Page 322 (348)'
+  tags='CCC_B2L14 Sentences Incomplete Male_Audio Dialogue',
+  context='CCC, Textbook 2, Lesson 14, Dialogue on Page 358 (384)'
 )
 
 # test output of SentencesToAnki
@@ -31,8 +31,8 @@ from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
   input='input/sentences_readings.txt',
   output='output/sentences_readings.txt',
-  tags='CCC_B2L12 Reading Sentences Incomplete Male_Audio',
-  context='CCC, Textbook 2, Lesson 12, Reading on Page 305 (301)'
+  tags='CCC_B2L13 Reading Sentences Incomplete Male_Audio',
+  context='CCC, Textbook 2, Lesson 14, Dialogue on Page 358 (384)'
 )
 
 from sentences_to_anki import SentencesToAnki
