@@ -39,8 +39,7 @@ class ChineseWord:
     self.simplified = to_simplified(self.traditional)
 
   def set_pinyin_from_simplified(self):
-    arr = [item for sublist in to_pinyin(self.simplified) for item in sublist]
-    self.pinyin = ''.join(arr)
+    self.pinyin = ''.join(to_pinyin(self.simplified))
 
   def set_english_from_simplified(self):
     entry = Dictionary.get_or_none(Dictionary.simplified==self.simplified)
