@@ -3,8 +3,11 @@
 ;
 ;;
 
-何雅婷：「幸虧鄰居聽見狗一直叫，很快的過來幫忙，... 」;鄰居&狗;Hé Yǎtíng: "Fortunately, the neighbours heard the dog barking continuously, and quickly went over to help, ..."
-何雅婷：「嗯，奶奶過世以後，爺爺就一個人住。」;奶奶&過世;Hé Yǎtíng: "Uh-huh, after grandma died, grandpa has been living alone."
+何雅婷：「嗯，奶奶過世以後，爺爺就一個人住。」;鄰居&狗;Hé Yǎtíng: "Fortunately, the neighbours heard the dog barking continuously, and quickly went over to help, ..." # this is when words in vocab can't be found in sentences
+何雅婷：「幸虧鄰居聽見狗一直叫，很快的過來幫忙，... 」;;Hé Yǎtíng: "Fortunately, the neighbours heard the dog barking continuously, and quickly went over to help, ..." # this is when there are no vocab to process
+
+
+何雅婷：「嗯，奶奶過世以後，爺爺就一個人住。」;奶奶&過世;Hé Yǎtíng: "Uh-huh, after grandma died, grandpa has been living alone." # test of other basic input that should pass
 隨著食品安全的問題越來越嚴重，奶奶也更常去有機超市買菜。;嚴重;As the problem of food safety becoming more and more serious, grandma more frequently buys her groceries in organic supermarket.
 何雅婷：「我爸爸擔心爺爺，所以領養了一隻狗陪他。」;擔心&隻;Hé Yǎtíng: "My father is worried about grandpa, so he adopted a dog to keep him company."
 羅珊蒂：「幸虧有這隻可愛的狗，要不然就太孤單了。」;可愛&孤單;Luó Shāndì: "Fortunately, he has this cute dog, otherwise he would be too lonely."

@@ -26,6 +26,7 @@ class SentencesToAnki:
       if any(input_segments): # check if there are any valuable inputs
         if len(input_segments) == 3: # if there are 3 segments
           sentences, words, meaning = line.strip().split(';')
+          words = words.replace("＆", "&") # sanitise easily-mistaken input UTF-8, e.g. '＆' and '&'
         else:
           message = f"Error on line: {count + 1} with content: \"{line}\" in file: {self.input_file.name}\n"
           message += "Message: Please make sure that there are three line segments in the line separated by ';'"
@@ -48,12 +49,12 @@ class SentencesToAnki:
 
   def format_sentences(self, sentences, words):
     bolded_sentences = sentences.replace("&", "<br>")
-    for word in words.split('&'):
+    for word in split_and_filter(words, '&'):
       bolded_sentences = emphasize_word_in_sentence(bolded_sentences, word)
     return escape(bolded_sentences)
 
   def format_pinyin(self, sentences, words):
-    emphasized_words = list(map(to_simplified, words.split('&')))
+    emphasized_words = list(map(to_simplified, split_and_filter(words, '&')))
     arr = []
     for segment in to_segments(to_simplified(sentences)):
       word = ChineseWord(simplified = segment)
@@ -81,7 +82,7 @@ class SentencesToAnki:
     return ''
 
   def format_words(self, words):
-    arr = list(map(self.format_word, words.split('&')))
+    arr = list(map(self.format_word, split_and_filter(words, '&')))
     return escape("<table>%s</table>"%(''.join(arr)))
 
   def format_word(self, word):

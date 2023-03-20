@@ -10,9 +10,14 @@ cedict_utils, for parsing cedict dictionaries automatically
 sqlite3, for cedict lookups
 peewee, ORM for sqlite3
 
-
 found some weaknesses in some package, e.g.:
 - in pinyin_jyutping_sentence: does not seem to support multiple pronounciations of a hanzi characters
 - dragonmapper, for pinyin <-> zhuyin
+
+errors:
+- Some unique pronounciation (e.g. yō) raises an error, current limitations of dragonmapper library
+
+limitations:
+- Some inaccurate transliteration, e.g. 說 is always transliterated to shuì instead of shuō, regardless of context
 
 that's why this package uses three different libraries to utilise the strengths of each package

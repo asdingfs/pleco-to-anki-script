@@ -67,14 +67,6 @@ a.hanzi_zhuyin_pairs()
 
 # test errors in SentencesToAnki
 from sentences_to_anki import SentencesToAnki
-SentencesToAnki(
-  input='input/test_expect_error.txt',
-  output='output/test_expect_error.txt',
-  tags='Test Tags Test_Tags'
-)
+SentencesToAnki(input='input/test_expect_error.txt',output='output/test_expect_error.txt',tags='Test Tags Test_Tags')
 from sentences_to_anki import SentencesToAnki
-SentencesToAnki(
-  input='input/test_expect_pass.txt',
-  output='output/test_expect_pass.txt',
-  tags='Test Tags Test_Tags'
-)
+SentencesToAnki(input='input/test_expect_pass.txt',output='output/test_expect_pass.txt',tags='Test Tags Test_Tags')
