@@ -27,11 +27,17 @@ class PlecoFlashcardEntry:
     self.chinese_word.traditional = traditional_hanzi
 
   def parse_pinyin(self, raw_pinyin):
-    dragonmapper_pinyin = transcriptions.zhuyin_to_pinyin(transcriptions.pinyin_to_zhuyin(raw_pinyin))
+    dragonmapper_pinyin = transcriptions.numbered_to_accented(raw_pinyin)
     self.chinese_word.pinyin = dragonmapper_pinyin
 
   def parse_zhuyin(self, raw_pinyin):
-    dragonmapper_zhuyin = transcriptions.pinyin_to_zhuyin(raw_pinyin)
+    try:
+      dragonmapper_zhuyin = transcriptions.pinyin_to_zhuyin(raw_pinyin)
+    except ValueError as e:
+      messages = f"Unable to convert 「{self.chinese_word.traditional}」's pinyin 「{raw_pinyin}」 to zhuyin! "
+      messages += f"Because of error '{str(e)}'. Skipping values..."
+      print(messages)
+      dragonmapper_zhuyin = ''
     self.chinese_word.zhuyin = dragonmapper_zhuyin
 
   def parse_meaning(self, raw_meaning):
