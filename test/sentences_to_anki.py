@@ -63,3 +63,18 @@ from chinese_word import ChineseWord
 a = ChineseWord('是。泰國到處都是廟，就像法國有很多教堂一樣。')
 a.fill_fields_from_traditional()
 a.hanzi_zhuyin_pairs()
+
+
+# test errors in SentencesToAnki
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/test_expect_error.txt',
+  output='output/test_expect_error.txt',
+  tags='Test Tags Test_Tags'
+)
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/test_expect_pass.txt',
+  output='output/test_expect_pass.txt',
+  tags='Test Tags Test_Tags'
+)
