@@ -13,16 +13,19 @@ class PlecoFlashcardEntry:
     array = line.split(self.separator)
     if len(array) < 3:
       array += ['' for i in range(max(0, 3 - len(array)))]
-    self.parse_hanzi(array[0])
-    raw_pinyin = re.sub('\W+', '', array[1])
+    self.parse_hanzi(array[0].strip())
+    raw_pinyin = re.sub('\W+', '', array[1].strip())
     raw_pinyin = raw_pinyin.replace("u:", "ü")
     self.parse_pinyin(raw_pinyin)
     self.parse_zhuyin(raw_pinyin)
-    self.parse_meaning(array[2])
+    self.parse_meaning(array[2].strip())
     return self.chinese_word
 
   def parse_hanzi(self, raw_hanzi):
-    simplified_hanzi, traditional_hanzi = raw_hanzi.replace("]", '').split("[")
+    split_hanzi = raw_hanzi.replace("]", '').split("[")
+    if len(split_hanzi) != 2:
+      raise ValueError('The chinese characters in flashcard export is incorrect, it should be in 「繁體字[簡體字]」format. Please re-check your export settings')
+    simplified_hanzi, traditional_hanzi = split_hanzi
     self.chinese_word.simplified = simplified_hanzi
     self.chinese_word.traditional = traditional_hanzi
 
