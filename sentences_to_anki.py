@@ -21,28 +21,34 @@ class SentencesToAnki:
     self.output_file.write('tags:' + self.tags + "\n")
     count = 0
     for line in self.input_file:
-      input_segments = line.strip().split(';')
-      # sanitising input line, and provide helpful error messages
-      if any(input_segments): # check if there are any valuable inputs
-        if len(input_segments) == 3: # if there are 3 segments
-          sentences, words, meaning = line.strip().split(';')
-          words = words.replace("＆", "&") # sanitise easily-mistaken input UTF-8, e.g. '＆' and '&'
+      try:
+        input_segments = line.strip().split(';')
+        # sanitising input line, and provide helpful error messages
+        if any(input_segments): # check if there are any valuable inputs
+          if len(input_segments) == 3: # if there are 3 segments
+            sentences, words, meaning = line.strip().split(';')
+            words = words.replace("＆", "&") # sanitise easily-mistaken input UTF-8, e.g. '＆' and '&'
+          else:
+            message = f"Error on line: {count + 1} with content: \"{line}\" in file: {self.input_file.name}\n"
+            message += "Message: Please make sure that there are three line segments in the line separated by ';'"
+            raise ValueError(message)
         else:
-          message = f"Error on line: {count + 1} with content: \"{line}\" in file: {self.input_file.name}\n"
-          message += "Message: Please make sure that there are three line segments in the line separated by ';'"
-          raise ValueError(message)
-      else:
-        continue # if all of the elements are empty, ignore and skip to next line
-      field_sequence = [
-        self.format_sentences(sentences, words),
-        '', # audio (using other plugin to generate)
-        '', # picture comprehension test field (manually uploaded later)
-        '', # supporting picture for reading/listening context (manually uploaded later)
-        self.format_pinyin(sentences, words), # format pinyin by using jieba segmentation
-        escape(meaning.strip()), # meaning
-        self.format_words(words), # formatted words
-        escape(self.context.strip()) # context
-      ]
+          continue # if all of the elements are empty, ignore and skip to next line
+
+        field_sequence = [
+          self.format_sentences(sentences, words),
+          '', # audio (using other plugin to generate)
+          '', # picture comprehension test field (manually uploaded later)
+          '', # supporting picture for reading/listening context (manually uploaded later)
+          self.format_pinyin(sentences, words), # format pinyin by using jieba segmentation
+          escape(meaning.strip()), # meaning
+          self.format_words(words), # formatted words
+          escape(self.context.strip()) # context
+        ]
+      except ValueError as e:
+        e.args += (f"on input line: {count + 1} with content: \"{line}\" in file: {self.input_file.name}\n",)
+        raise
+
       self.output_file.write(';'.join(field_sequence) + "\n")
       count += 1
     print("Parsed %s entries successfully!" % (count))
