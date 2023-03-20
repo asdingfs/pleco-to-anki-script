@@ -11,28 +11,36 @@ SentencesToAnki(
 # test output of SentencesToAnki
 from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
-  input='input/sentences_female.txt',
-  output='output/sentences_female.txt',
-  tags='CCC_B2L14 Sentences Incomplete Female_Audio Dialogue',
-  context='CCC, Textbook 2, Lesson 14, Dialogue on Page 358 (384)'
+  input='input/sentences_d_female.txt',
+  output='output/sentences_d_female.txt',
+  tags='CCC_B3L05 Dialogue Sentences Incomplete Female_Audio',
+  context='CCC, Textbook 3, Lesson 05, Dialogue on Page 101 (127)'
 )
 
 # test output of SentencesToAnki
 from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
-  input='input/sentences_male.txt',
-  output='output/sentences_male.txt',
-  tags='CCC_B2L14 Sentences Incomplete Male_Audio Dialogue',
-  context='CCC, Textbook 2, Lesson 14, Dialogue on Page 358 (384)'
+  input='input/sentences_d_male.txt',
+  output='output/sentences_d_male.txt',
+  tags='CCC_B3L05 Dialogue Sentences Incomplete Male_Audio',
+  context='CCC, Textbook 3, Lesson 05, Dialogue on Page 101 (127)'
 )
 
 # test output of SentencesToAnki
 from sentences_to_anki import SentencesToAnki
 SentencesToAnki(
-  input='input/sentences_readings.txt',
-  output='output/sentences_readings.txt',
-  tags='CCC_B2L13 Reading Sentences Incomplete Male_Audio',
-  context='CCC, Textbook 2, Lesson 14, Dialogue on Page 358 (384)'
+  input='input/sentences_r_female.txt',
+  output='output/sentences_r_female.txt',
+  tags='CCC_B3L05 Reading Sentences Incomplete Female_Audio',
+  context='CCC, Textbook 3, Lesson 05, Readings on Page 106 (133)'
+)
+
+from sentences_to_anki import SentencesToAnki
+SentencesToAnki(
+  input='input/sentences_r_male.txt',
+  output='output/sentences_r_male.txt',
+  tags='CCC_B3L05 Reading Sentences Incomplete Male_Audio',
+  context='CCC, Textbook 3, Lesson 05, Readings on Page 106 (133)'
 )
 
 from sentences_to_anki import SentencesToAnki
