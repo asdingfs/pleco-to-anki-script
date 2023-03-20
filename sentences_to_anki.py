@@ -3,7 +3,7 @@ import re
 # see input test_sentences for sample format
 from dictionary import Dictionary
 from chinese_word import ChineseWord
-from constants import to_simplified, to_pinyin, to_segments
+from constants import to_simplified, to_segments
 from zhon import pinyin
 from anki_formatting import *
 

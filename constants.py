@@ -20,8 +20,9 @@ kxhc1983.load()
 
 # initialise converter methods
 to_simplified = OpenCC('tw2s').convert
-def to_pinyin(*args, **kwargs):
-  return lazy_pinyin(*args, **kwargs, style=Style.TONE, tone_sandhi=True)
+def transliterate(*args, zhuyin=False):
+  style = Style.BOPOMOFO if zhuyin else Style.TONE
+  return lazy_pinyin(*args, tone_sandhi=True, style=style)
 to_segments = jieba.cut
 
 # initialise database

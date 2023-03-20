@@ -1,7 +1,7 @@
 import re
 
 from constants import TONE_COLORS
-from constants import to_simplified, to_pinyin, to_segments
+from constants import to_simplified, transliterate, to_segments
 from dictionary import Dictionary
 from dragonmapper import transcriptions
 from zhon import zhuyin, hanzi
@@ -27,11 +27,6 @@ class ChineseWord:
   def dashed_traditional(self):
     return ChineseWord.dash_equal_characters(self.simplified, self.traditional)
 
-  def set_zhuyin_from_pinyin(self):
-    # attempt to convert non-standard notation of u: to ü
-    escaped_pinyin = self.pinyin.replace("u:", "ü")
-    self.zhuyin = transcriptions.pinyin_to_zhuyin(escaped_pinyin)
-
   def set_pinyin_from_zhuyin(self):
     self.pinyin = transcriptions.zhuyin_to_pinyin(self.zhuyin)
 
@@ -39,7 +34,11 @@ class ChineseWord:
     self.simplified = to_simplified(self.traditional)
 
   def set_pinyin_from_simplified(self):
-    self.pinyin = ''.join(to_pinyin(self.simplified))
+    self.pinyin = ''.join(transliterate(self.simplified, zhuyin=False))
+
+  # NOTE: expected value for zhuyin encoding is a string which every syllable is separated by space
+  def set_zhuyin_from_simplified(self):
+    self.zhuyin = ' '.join(transliterate(self.simplified, zhuyin=True))
 
   def set_english_from_simplified(self):
     entry = Dictionary.get_or_none(Dictionary.simplified==self.simplified)
@@ -52,12 +51,12 @@ class ChineseWord:
     if overwrite:
       self.set_simplified_from_traditional()
       self.set_pinyin_from_simplified()
-      self.set_zhuyin_from_pinyin()
+      self.set_zhuyin_from_simplified()
       self.set_english_from_simplified()
     else:
       self.set_simplified_from_traditional() if bool(self.simplified) is False else None
       self.set_pinyin_from_simplified() if bool(self.pinyin) is False else None
-      self.set_zhuyin_from_pinyin() if bool(self.zhuyin) is False else None
+      self.set_zhuyin_from_simplified() if bool(self.zhuyin) is False else None
       self.set_english_from_simplified() if bool(self.english) is False else None
 
   def deconstructed_zhuyin(self):
@@ -96,6 +95,6 @@ class ChineseWord:
       english=dictionary.english
     )
     # transliterate and standardise zhuyin and pinyin format according to the one defined in-class
-    cn_word.set_zhuyin_from_pinyin()
+    cn_word.set_zhuyin_from_simplified()
     cn_word.set_pinyin_from_zhuyin()
     return cn_word
