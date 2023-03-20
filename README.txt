@@ -15,9 +15,9 @@ found some weaknesses in some package, e.g.:
 - dragonmapper, for pinyin <-> zhuyin
 
 errors:
-- Some unique pronounciation (e.g. yō) raises an error, current limitations of dragonmapper library
+- Some unique pronounciation (e.g. yō, ō) raises an error, current limitations of dragonmapper library
 
 limitations:
-- Some inaccurate transliteration, e.g. 說 is always transliterated to shuì instead of shuō, regardless of context
+- Some inaccurate transliteration, e.g. 說 is always transliterated to shuì instead of shuō, regardless of context, but seems like it's better with lazy_pinyin
 
 that's why this package uses three different libraries to utilise the strengths of each package

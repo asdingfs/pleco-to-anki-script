@@ -3,7 +3,6 @@ import re
 from constants import TONE_COLORS
 from constants import to_simplified, transliterate, to_segments
 from dictionary import Dictionary
-from dragonmapper import transcriptions
 from zhon import zhuyin, hanzi
 
 class ChineseWord:
@@ -26,9 +25,6 @@ class ChineseWord:
 
   def dashed_traditional(self):
     return ChineseWord.dash_equal_characters(self.simplified, self.traditional)
-
-  def set_pinyin_from_zhuyin(self):
-    self.pinyin = transcriptions.zhuyin_to_pinyin(self.zhuyin)
 
   def set_simplified_from_traditional(self):
     self.simplified = to_simplified(self.traditional)
@@ -96,5 +92,5 @@ class ChineseWord:
     )
     # transliterate and standardise zhuyin and pinyin format according to the one defined in-class
     cn_word.set_zhuyin_from_simplified()
-    cn_word.set_pinyin_from_zhuyin()
+    cn_word.set_pinyin_from_simplified()
     return cn_word
