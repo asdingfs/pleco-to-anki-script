@@ -58,12 +58,18 @@ class ChineseWord:
   def deconstructed_zhuyin(self):
     return re.findall(zhuyin.syllable, self.zhuyin)
 
+  def deconstructed_hanzi(self):
+    return re.findall('[{}]'.format(hanzi.characters), self.traditional)
+
   def hanzi_zhuyin_pairs(self):
     pairs = { 'hanzi': [], 'zhuyin': [] }
     deconstructed_zhuyin = self.deconstructed_zhuyin()
+    deconstructed_hanzi = self.deconstructed_hanzi()
+    if len(self.traditional) != len(deconstructed_hanzi):
+      print(f"Word: 「{self.traditional}」contains some invalid hanzi characters, ignoring invalid characters...")
     if bool(deconstructed_zhuyin):
       offset = 0
-      for idx, char in enumerate(self.traditional):
+      for idx, char in enumerate(deconstructed_hanzi):
         pairs['hanzi'].append(char)
         if bool(re.findall('[{}]'.format(hanzi.stops + hanzi.non_stops), char)): # if a punctuation
           pairs['zhuyin'].append(char)

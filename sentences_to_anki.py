@@ -94,7 +94,7 @@ class SentencesToAnki:
   def format_word(self, word):
     cn_word = self.translate(word)
     deconstructed = cn_word.hanzi_zhuyin_pairs()
-    length = len(cn_word.traditional)
+    length = len(deconstructed['hanzi'])
     rubi_text = ''
     for i in range(length):
       hanzi, zhuyin = deconstructed['hanzi'][i], deconstructed['zhuyin'][i]
