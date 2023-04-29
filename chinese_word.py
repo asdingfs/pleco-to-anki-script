@@ -1,23 +1,21 @@
 import re
 
 from constants import TONE_COLORS
-from constants import to_simplified, transliterate, to_segments
+from constants import to_simplified, transliterate, standardise_pinyin
 from dictionary import Dictionary
-from zhon import zhuyin, hanzi
+from zhon import hanzi
 
 class ChineseWord:
-  def __init__(self, traditional='', simplified='', pinyin='', zhuyin='', english=''):
+  def __init__(self, traditional='', simplified='', pinyin='', english=''):
     self.traditional = traditional
     self.simplified = simplified
     self.pinyin = pinyin
-    self.zhuyin = zhuyin
     self.english = english
 
   def is_valid_word(self):
     return bool(
       self.traditional and self.simplified and
-      self.pinyin and self.zhuyin and
-      self.english
+      self.pinyin and self.english
     )
 
   def dashed_simplified(self):
@@ -30,11 +28,7 @@ class ChineseWord:
     self.simplified = to_simplified(self.traditional)
 
   def set_pinyin_from_simplified(self):
-    self.pinyin = ''.join(transliterate(self.simplified, zhuyin=False))
-
-  # NOTE: expected value for zhuyin encoding is a string which every syllable is separated by space
-  def set_zhuyin_from_simplified(self):
-    self.zhuyin = ' '.join(transliterate(self.simplified, zhuyin=True))
+    self.pinyin = ''.join(transliterate(self.simplified))
 
   def set_english_from_simplified(self):
     entry = Dictionary.get_or_none(Dictionary.simplified==self.simplified)
@@ -47,36 +41,14 @@ class ChineseWord:
     if overwrite:
       self.set_simplified_from_traditional()
       self.set_pinyin_from_simplified()
-      self.set_zhuyin_from_simplified()
       self.set_english_from_simplified()
     else:
       self.set_simplified_from_traditional() if bool(self.simplified) is False else None
       self.set_pinyin_from_simplified() if bool(self.pinyin) is False else None
-      self.set_zhuyin_from_simplified() if bool(self.zhuyin) is False else None
       self.set_english_from_simplified() if bool(self.english) is False else None
-
-  def deconstructed_zhuyin(self):
-    return re.findall(zhuyin.syllable, self.zhuyin)
 
   def deconstructed_hanzi(self):
     return re.findall('[{}]'.format(hanzi.characters), self.traditional)
-
-  def hanzi_zhuyin_pairs(self):
-    pairs = { 'hanzi': [], 'zhuyin': [] }
-    deconstructed_zhuyin = self.deconstructed_zhuyin()
-    deconstructed_hanzi = self.deconstructed_hanzi()
-    if len(self.traditional) != len(deconstructed_hanzi):
-      print(f"Word: 「{self.traditional}」contains some invalid hanzi characters, ignoring invalid characters...")
-    if bool(deconstructed_zhuyin):
-      offset = 0
-      for idx, char in enumerate(deconstructed_hanzi):
-        pairs['hanzi'].append(char)
-        if bool(re.findall('[{}]'.format(hanzi.stops + hanzi.non_stops), char)): # if a punctuation
-          pairs['zhuyin'].append(char)
-          offset += 1
-        else:
-          pairs['zhuyin'].append(deconstructed_zhuyin[idx-offset])
-    return pairs
 
   @classmethod
   def dash_equal_characters(klass, reference, comparison):
@@ -89,14 +61,11 @@ class ChineseWord:
     return ' '.join(dash_form).strip()
 
   @classmethod
-  def from_dictionary(self, dictionary):
+  def from_dictionary(self, entry):
     cn_word = ChineseWord(
-      traditional=dictionary.traditional,
-      simplified=dictionary.simplified,
-      pinyin=dictionary.pinyin,
-      english=dictionary.english
+      traditional=entry.traditional,
+      simplified=entry.simplified,
+      pinyin=standardise_pinyin(entry.pinyin),
+      english=entry.english
     )
-    # transliterate and standardise zhuyin and pinyin format according to the one defined in-class
-    cn_word.set_zhuyin_from_simplified()
-    cn_word.set_pinyin_from_simplified()
     return cn_word

@@ -18,8 +18,8 @@ class PlecoToAnki:
         sequence = [
           word.traditional,
           word.english,
-          "『" + word.dashed_simplified() + "』",
-          word.zhuyin,
+          "(" + word.dashed_simplified() + ")",
+          '',
           word.pinyin,
           word.english,
           '',

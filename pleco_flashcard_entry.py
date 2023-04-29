@@ -1,5 +1,5 @@
 import re
-from dragonmapper import transcriptions
+from constants import standardise_pinyin
 from chinese_word import ChineseWord
 
 class PlecoFlashcardEntry:
@@ -17,7 +17,6 @@ class PlecoFlashcardEntry:
     raw_pinyin = re.sub('\W+', '', array[1].strip())
     raw_pinyin = raw_pinyin.replace("u:", "ü")
     self.parse_pinyin(raw_pinyin)
-    self.parse_zhuyin(raw_pinyin)
     self.parse_meaning(array[2].strip())
     return self.chinese_word
 
@@ -30,18 +29,7 @@ class PlecoFlashcardEntry:
     self.chinese_word.traditional = traditional_hanzi
 
   def parse_pinyin(self, raw_pinyin):
-    dragonmapper_pinyin = transcriptions.numbered_to_accented(raw_pinyin)
-    self.chinese_word.pinyin = dragonmapper_pinyin
-
-  def parse_zhuyin(self, raw_pinyin):
-    try:
-      dragonmapper_zhuyin = transcriptions.pinyin_to_zhuyin(raw_pinyin)
-    except ValueError as e:
-      messages = f"Unable to convert 「{self.chinese_word.traditional}」's pinyin 「{raw_pinyin}」 to zhuyin! "
-      messages += f"Because of error '{str(e)}'. Skipping values..."
-      print(messages)
-      dragonmapper_zhuyin = ''
-    self.chinese_word.zhuyin = dragonmapper_zhuyin
+    self.chinese_word.pinyin = standardise_pinyin(raw_pinyin)
 
   def parse_meaning(self, raw_meaning):
     parsed_meaning = raw_meaning.strip().replace(';', ',')

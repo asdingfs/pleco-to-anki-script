@@ -91,26 +91,36 @@ class SentencesToAnki:
     arr = list(map(self.format_word, split_and_filter(words, '&')))
     return escape("<table>%s</table>"%(''.join(arr)))
 
+  # a 'word' may contain multiple pronounciation, hence different dictionary entries
+  # this method will display them as separate row
   def format_word(self, word):
-    cn_word = self.translate(word)
-    deconstructed = cn_word.hanzi_zhuyin_pairs()
-    length = len(deconstructed['hanzi'])
-    rubi_text = ''
-    for i in range(length):
-      hanzi, zhuyin = deconstructed['hanzi'][i], deconstructed['zhuyin'][i]
-      furigana = '' if hanzi == zhuyin else zhuyin
-      rubi_text += get_rubi_element(hanzi, furigana)
-    return "<tr><td><ruby>%s</ruby></td><td>%s</td></tr>"%(
-      rubi_text,
-      cn_word.english.replace("\n", "<br>")
-    )
+    entries = self.translate(word)
+    first_entry = True
+    result = ''
+    for entry in entries:
+      if first_entry:
+        result += "<tr><td rowspan=%s>%s<br>(%s)</td><td>%s</td><td>%s</td></tr>"%(
+          len(entries),
+          entry.traditional,
+          entry.dashed_simplified(),
+          entry.pinyin,
+          entry.english.replace("\n", "<br>")
+        )
+        first_entry = False
+      else:
+        result += "<tr><td>%s</td><td>%s</td></tr>"%(
+          entry.pinyin,
+          entry.english.replace("\n", "<br>")
+        )
+    return result
 
+  # return a list of potential translations that matches tw_word
   def translate(self, tw_word):
-    tl_word = Dictionary.get_or_none(Dictionary.traditional==tw_word)
-    cn_word = ChineseWord(traditional=tw_word)
-    if tl_word: # if not None
-      cn_word = ChineseWord.from_dictionary(tl_word)
+    tl_words = Dictionary.select().where(Dictionary.traditional==tw_word)
+    if len(tl_words): # if at least one definition exists
+      return list(map(ChineseWord.from_dictionary, tl_words)) 
     else:
-      cn_word.fill_fields_from_traditional() # autofill as much as possible
       print("Word: 「%s」 cannot be found in the dictionary"%(tw_word))
-    return cn_word
+      cn_word = ChineseWord(traditional=tw_word)
+      cn_word.fill_fields_from_traditional() # autofill as much as possible
+      return [cn_word]

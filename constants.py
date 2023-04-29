@@ -1,4 +1,5 @@
 from opencc import OpenCC
+from dragonmapper import transcriptions
 from pypinyin import pinyin, lazy_pinyin, Style
 from pypinyin_dict.phrase_pinyin_data import cc_cedict
 from playhouse.sqlite_ext import SqliteExtDatabase
@@ -20,10 +21,10 @@ jieba.initialize()
 
 # initialise converter methods
 to_simplified = OpenCC('tw2s').convert
-def transliterate(*args, zhuyin=False):
-  style = Style.BOPOMOFO if zhuyin else Style.TONE
-  return lazy_pinyin(*args, tone_sandhi=True, style=style)
+def transliterate(*args):
+  return lazy_pinyin(*args, tone_sandhi=True, style=Style.TONE)
 to_segments = jieba.cut
+standardise_pinyin = transcriptions.numbered_to_accented
 
 # initialise database
 dict_db = SqliteExtDatabase(DICT_DB)
