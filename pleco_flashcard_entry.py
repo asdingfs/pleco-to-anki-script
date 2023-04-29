@@ -29,7 +29,6 @@ class PlecoFlashcardEntry:
 
   def parse_pinyin(self, raw_pinyin):
     self.chinese_word.pinyin = raw_pinyin
-    self.chinese_word.standardise_pinyin()
 
   def parse_meaning(self, raw_meaning):
     parsed_meaning = raw_meaning.strip().replace(';', ',')

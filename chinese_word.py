@@ -1,7 +1,7 @@
 import re
 
 from constants import TONE_COLORS
-from constants import to_simplified, transliterate, transcriptions
+from constants import to_simplified, to_accented, transliterate
 from dictionary import Dictionary
 from zhon import hanzi
 
@@ -11,6 +11,15 @@ class ChineseWord:
     self.simplified = simplified
     self.pinyin = pinyin
     self.english = english
+
+  @property
+  def pinyin(self):
+    return self._pinyin
+
+  @pinyin.setter
+  def pinyin(self, raw_pinyin):
+    accented_pinyin = to_accented(raw_pinyin.replace('u:', 'v'))
+    self._pinyin = re.sub(re.compile(r'\s+'), '', accented_pinyin)
 
   def is_valid_word(self):
     return bool(
@@ -23,10 +32,6 @@ class ChineseWord:
 
   def dashed_traditional(self):
     return ChineseWord.dash_equal_characters(self.simplified, self.traditional)
-
-  def standardise_pinyin(self):
-    accented_pinyin = transcriptions.numbered_to_accented(self.pinyin)
-    self.pinyin = re.sub(re.compile(r'\s+'), '', accented_pinyin)
 
   def set_simplified_from_traditional(self):
     self.simplified = to_simplified(self.traditional)
@@ -72,5 +77,4 @@ class ChineseWord:
       pinyin=entry.pinyin,
       english=entry.english
     )
-    cn_word.standardise_pinyin()
     return cn_word

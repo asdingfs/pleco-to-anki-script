@@ -21,10 +21,11 @@ jieba.initialize()
 
 # initialise converter methods
 to_simplified = OpenCC('tw2s').convert
+to_segments = jieba.cut
 def transliterate(*args):
   return lazy_pinyin(*args, tone_sandhi=True, style=Style.TONE)
-to_segments = jieba.cut
-transcriptions # used in other modules
+def to_accented(*args):
+  return transcriptions.numbered_to_accented(*args)
 
 # initialise database
 dict_db = SqliteExtDatabase(DICT_DB)
