@@ -58,7 +58,7 @@ class ChineseWord:
         dash_form[i] = '—'
       else:
         dash_form[i] = comparison[i]
-    return ' '.join(dash_form).strip()
+    return ''.join(dash_form).strip()
 
   @classmethod
   def from_dictionary(self, entry):
