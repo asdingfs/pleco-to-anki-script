@@ -60,21 +60,41 @@ class SentencesToAnki:
     return escape(bolded_sentences)
 
   def format_pinyin(self, sentences, words):
+    # helper functions to merge intervals
+    def merge_intervals(intervals):
+      # Sort intervals based on start times
+      intervals.sort(key=lambda x: x[0])
+      merged = []
+      for interval in intervals:
+        # If the merged list is empty or no overlap, append the interval
+        if not merged or merged[-1][1] < interval[0]:
+          merged.append(interval)
+        # If there is an overlap, merge the intervals
+        else:
+          merged[-1][1] = max(merged[-1][1], interval[1])
+      return merged
+
     emphasized_words = list(map(to_simplified, split_and_filter(words, '&')))
     arr = []
     for segment in to_segments(to_simplified(sentences)):
       word = ChineseWord(simplified = segment)
       word.set_pinyin_from_simplified()
-      emphasis = self.find_emphasis(word.simplified, emphasized_words)
+      emphases = self.find_emphasis(word.simplified, emphasized_words)
       if word.simplified == '&':
         word = "<br>"
-      elif bool(emphasis):
-        idx = word.simplified.find(emphasis)
-        length = len(emphasis)
+      elif bool(emphases):
         pinyin_arr = re.findall(pinyin.syllable, word.pinyin, re.I)
-        word = ''.join(pinyin_arr[:idx]) +\
-          emphasize(''.join(pinyin_arr[idx:idx+length])) +\
-          ''.join(pinyin_arr[idx+length:])
+        intervals = []
+        for emphasis in emphases:
+          idx = word.simplified.find(emphasis)
+          intervals += [[idx, idx+len(emphasis)]]
+        word = ''
+        idx = 0
+        for interval in merge_intervals(intervals):
+          word += ''.join(pinyin_arr[idx:interval[0]])
+          word += emphasize(''.join(pinyin_arr[interval[0]:interval[1]]))
+          idx = interval[1]
+        word += ''.join(pinyin_arr[idx:])
       else:
         word = word.pinyin
       arr.append(word)
@@ -82,10 +102,11 @@ class SentencesToAnki:
 
   # TODO: refactor for optimisation later
   def find_emphasis(self, word, emphasized_words):
+    emphases = [] # note emphases is plural
     for emphasis in emphasized_words:
       if emphasis in word:
-        return emphasis
-    return ''
+        emphases += [emphasis]
+    return emphases
 
   def format_words(self, words):
     arr = list(map(self.format_word, split_and_filter(words, '&')))
