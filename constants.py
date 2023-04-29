@@ -15,6 +15,8 @@ TONE_COLORS = [
 
 # initialise settings for converters
 cc_cedict.load()
+jieba.set_dictionary('data/dict.txt.big')
+jieba.initialize()
 
 # initialise converter methods
 to_simplified = OpenCC('tw2s').convert
