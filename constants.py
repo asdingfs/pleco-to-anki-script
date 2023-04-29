@@ -1,7 +1,6 @@
 from opencc import OpenCC
 from pypinyin import pinyin, lazy_pinyin, Style
 from pypinyin_dict.phrase_pinyin_data import cc_cedict
-from pypinyin_dict.pinyin_data import kxhc1983
 from playhouse.sqlite_ext import SqliteExtDatabase
 import jieba
 
@@ -16,7 +15,6 @@ TONE_COLORS = [
 
 # initialise settings for converters
 cc_cedict.load()
-kxhc1983.load()
 
 # initialise converter methods
 to_simplified = OpenCC('tw2s').convert

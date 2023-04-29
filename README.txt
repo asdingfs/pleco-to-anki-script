@@ -3,7 +3,7 @@ pip3 install these things:
 dragonmapper, for pinyin <-> zhuyin
 zhon, for common chinese constants
 opencc, for most accurate traditional <-> simplified conversion
-jieba, for most accurate segmentation of chinese characters
+jieba, for most accurate segmentation of chinese characters (works better in simplified chinese)
 pypinyin, to convert sentences to pinyin (simplified character inputs produces better results)
 pypinyin-dict, for more accurate pinyin dictionaries for pypinyin library
 cedict_utils, for parsing cedict dictionaries automatically
