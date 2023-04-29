@@ -106,7 +106,7 @@ class SentencesToAnki:
     )
 
   def translate(self, tw_word):
-    tl_word = Dictionary.get_or_none(Dictionary.simplified==to_simplified(tw_word))
+    tl_word = Dictionary.get_or_none(Dictionary.traditional==tw_word)
     cn_word = ChineseWord(traditional=tw_word)
     if tl_word: # if not None
       cn_word = ChineseWord.from_dictionary(tl_word)
