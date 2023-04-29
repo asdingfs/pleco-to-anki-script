@@ -1,5 +1,4 @@
 import re
-from constants import standardise_pinyin
 from chinese_word import ChineseWord
 
 class PlecoFlashcardEntry:
@@ -29,7 +28,8 @@ class PlecoFlashcardEntry:
     self.chinese_word.traditional = traditional_hanzi
 
   def parse_pinyin(self, raw_pinyin):
-    self.chinese_word.pinyin = standardise_pinyin(raw_pinyin)
+    self.chinese_word.pinyin = raw_pinyin
+    self.chinese_word.standardise_pinyin()
 
   def parse_meaning(self, raw_meaning):
     parsed_meaning = raw_meaning.strip().replace(';', ',')

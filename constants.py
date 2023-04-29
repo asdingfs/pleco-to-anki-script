@@ -24,7 +24,7 @@ to_simplified = OpenCC('tw2s').convert
 def transliterate(*args):
   return lazy_pinyin(*args, tone_sandhi=True, style=Style.TONE)
 to_segments = jieba.cut
-standardise_pinyin = transcriptions.numbered_to_accented
+transcriptions # used in other modules
 
 # initialise database
 dict_db = SqliteExtDatabase(DICT_DB)

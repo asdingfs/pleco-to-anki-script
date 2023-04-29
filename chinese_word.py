@@ -1,7 +1,7 @@
 import re
 
 from constants import TONE_COLORS
-from constants import to_simplified, transliterate, standardise_pinyin
+from constants import to_simplified, transliterate, transcriptions
 from dictionary import Dictionary
 from zhon import hanzi
 
@@ -23,6 +23,10 @@ class ChineseWord:
 
   def dashed_traditional(self):
     return ChineseWord.dash_equal_characters(self.simplified, self.traditional)
+
+  def standardise_pinyin(self):
+    accented_pinyin = transcriptions.numbered_to_accented(self.pinyin)
+    self.pinyin = re.sub(re.compile(r'\s+'), '', accented_pinyin)
 
   def set_simplified_from_traditional(self):
     self.simplified = to_simplified(self.traditional)
@@ -65,7 +69,8 @@ class ChineseWord:
     cn_word = ChineseWord(
       traditional=entry.traditional,
       simplified=entry.simplified,
-      pinyin=standardise_pinyin(entry.pinyin),
+      pinyin=entry.pinyin,
       english=entry.english
     )
+    cn_word.standardise_pinyin()
     return cn_word
